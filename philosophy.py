@@ -29,7 +29,7 @@ def get_to_philosophy(url):
 
         no_parentheses = ignore_parentheses(response.text)
 
-        soup = BeautifulSoup(no_parentheses, features='html.parser')
+        soup = BeautifulSoup(no_parentheses, features='lxml')
 
         # selects the tag containing the article body
         main_body = soup.select('#mw-content-text > div.mw-parser-output')
