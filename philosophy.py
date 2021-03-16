@@ -8,12 +8,12 @@ visited_articles = []
 # function that removes all parentheses and all text between them
 # except in valid links, ex: 'https://en.wikipedia.org/wiki/Stimulus_(physiology)'
 def ignore_parentheses(text):
-    no_parentheses_after_quoutes = re.sub('\"\((.*?)\)', '"', text)
-    no_parentheses_after_tags = re.sub('>\((.*?)\)', '>', no_parentheses_after_quoutes)
-    no_parentheses_after_curly_brackets = re.sub('}\((.*?)\)', '}', no_parentheses_after_tags)
-    no_parentheses_after_commas = re.sub(',\((.*?)\)', ',', no_parentheses_after_curly_brackets)
-    no_parentheses_after_periods = re.sub('\.\((.*?)\)', '.', no_parentheses_after_commas)
-    no_parentheses_after_spaces = re.sub(' \((.*?)\)', ' ', no_parentheses_after_periods)
+    no_parentheses_after_quoutes = re.sub(r'\"\((.*?)\)', r'"', text)
+    no_parentheses_after_tags = re.sub(r'>\((.*?)\)', r'>', no_parentheses_after_quoutes)
+    no_parentheses_after_curly_brackets = re.sub(r'}\((.*?)\)', r'}', no_parentheses_after_tags)
+    no_parentheses_after_commas = re.sub(r',\((.*?)\)', r',', no_parentheses_after_curly_brackets)
+    no_parentheses_after_periods = re.sub(r'\.\((.*?)\)', r'.', no_parentheses_after_commas)
+    no_parentheses_after_spaces = re.sub(r' \((.*?)\)', r' ', no_parentheses_after_periods)
     no_parentheses = no_parentheses_after_spaces
     return no_parentheses
 
