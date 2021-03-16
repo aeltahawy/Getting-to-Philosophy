@@ -13,9 +13,7 @@ def ignore_parentheses(text):
     no_parentheses_after_curly_brackets = re.sub('}\((.*?)\)', '}', no_parentheses_after_tags)
     no_parentheses_after_commas = re.sub(',\((.*?)\)', ',', no_parentheses_after_curly_brackets)
     no_parentheses_after_periods = re.sub('\.\((.*?)\)', '.', no_parentheses_after_commas)
-    no_parentheses_after_spaces = re.sub(' \((.*?)\)', ' ', no_parentheses_after_periods)
-    no_parentheses = no_parentheses_after_spaces
-    return no_parentheses
+    return re.sub(' \((.*?)\)', ' ', no_parentheses_after_periods)
 
 def get_to_philosophy(url):
 
