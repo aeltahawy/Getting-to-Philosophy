@@ -14,21 +14,16 @@ visited_articles = []
 
 def ignore_parentheses(text):
     no_parentheses_after_quoutes = re.sub(r"\"\((.*?)\)", r'"', text)
-    no_parentheses_after_tags = re.sub(
-        r">\((.*?)\)", r">", no_parentheses_after_quoutes
-    )
-    no_parentheses_after_curly_brackets = re.sub(
-        r"}\((.*?)\)", r"}", no_parentheses_after_tags
-    )
-    no_parentheses_after_commas = re.sub(
-        r",\((.*?)\)", r",", no_parentheses_after_curly_brackets
-    )
-    no_parentheses_after_periods = re.sub(
-        r"\.\((.*?)\)", r".", no_parentheses_after_commas
-    )
-    no_parentheses_after_spaces = re.sub(
-        r" \((.*?)\)", r" ", no_parentheses_after_periods
-    )
+    no_parentheses_after_tags = re.sub(r">\((.*?)\)", r">",
+                                       no_parentheses_after_quoutes)
+    no_parentheses_after_curly_brackets = re.sub(r"}\((.*?)\)", r"}",
+                                                 no_parentheses_after_tags)
+    no_parentheses_after_commas = re.sub(r",\((.*?)\)", r",",
+                                         no_parentheses_after_curly_brackets)
+    no_parentheses_after_periods = re.sub(r"\.\((.*?)\)", r".",
+                                          no_parentheses_after_commas)
+    no_parentheses_after_spaces = re.sub(r" \((.*?)\)", r" ",
+                                         no_parentheses_after_periods)
     no_parentheses = no_parentheses_after_spaces
     return no_parentheses
 
@@ -51,7 +46,8 @@ def get_to_philosophy(url):
         main_body = soup.select("#mw-content-text > div.mw-parser-output")
 
         # clears tags of tables, boxes, and footnotes
-        for element in main_body[0].select("span, table, sup, i, .thumbinner, .IPA"):
+        for element in main_body[0].select(
+                "span, table, sup, i, .thumbinner, .IPA"):
             element.clear()
 
         text_elements = main_body[0].find_all(["p", "ul", "ol"])
@@ -60,7 +56,8 @@ def get_to_philosophy(url):
         # and returns the url for the first valid link
         for text_element in text_elements:
             if text_element.find("a", href=re.compile("/wiki/")) is not None:
-                href = text_element.find("a", href=re.compile("/wiki/")).get("href")
+                href = text_element.find("a",
+                                         href=re.compile("/wiki/")).get("href")
                 url = "https://en.wikipedia.org" + href
                 break
 
