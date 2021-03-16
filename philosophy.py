@@ -1,7 +1,8 @@
-from bs4 import BeautifulSoup
-import requests
 import re
 import time
+
+import requests
+from bs4 import BeautifulSoup
 
 philosophy_url = "https://en.wikipedia.org/wiki/Philosophy"
 current_url = ""
